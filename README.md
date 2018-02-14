@@ -21,10 +21,12 @@ See [here](https://pypi.python.org/pypi/chromedriver_installer) for installation
 
 ## Usage:
 
-The script takes up to 3 arguments: Username and Password, which are required, and then "--headless" for headless mode.
+The script takes 1 optional argument `--headless`, which determines whether or not the script will run headless or not. 
 
 Normal:
-`$ python canteen-scraper.py username password`
+`$ python canteen-scraper.py`
 
 Headless: 
-`$ python canteen-scraper.py username password --headless`
+`$ python canteen-scraper.py --headless`
+
+You will then be prompted to enter your username and password (ITU credentials).
