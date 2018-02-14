@@ -41,25 +41,28 @@ def Login(username, password, url, username_field_id, password_field_id, submit_
 
 # CLI Support
 import argparse
+import getpass
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--headless", help="Turns on headless mode", action="store_true")
 args = parser.parse_args()
 
-un = input("Username:")
+url = "https://intranet.itu.dk/organisation/canteen"
 
-import getpass
+# Get the username and password as prompt
+un = input("Username:")
 try:
     pw = getpass.getpass()
 except Exception as error:
     print("Error occured...")
 
-url = "https://intranet.itu.dk/organisation/canteen"
-html = "" # just a placeholder
+# Check if headless or not
 if args.headless:
     html = Login(un, pw, url, "username", "user_pass", "btnLogin", True)
 else:
     html = Login(un, pw, url, "username", "user_pass", "btnLogin", False)
 
+# Set up soup
 from bs4 import BeautifulSoup
 soup = BeautifulSoup(html, 'html.parser')
 
