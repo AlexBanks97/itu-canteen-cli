@@ -43,8 +43,14 @@ def MenuToday():
 
     # If LastScrape table is empty, or if it has been 7 days since last monday. 
     if len(last_scrape) < 1 or (datetime.datetime.now() - last_monday) > datetime.timedelta(days=7):
+        # new up the database again
+        DB.drop_tables([Day, LastScrape])
+        DB.create_tables([Day, LastScrape])
+
         import CScrape as cs
         menus = cs.GetMenus()
+        
+        # Iterate menu items and insert into DB
         for idx, item in enumerate(menus):
             menu_to_save = Day(day=idx, menu=item)
             menu_to_save.save()
@@ -52,6 +58,8 @@ def MenuToday():
         # Save new scrape date to eatitdb
         newscrapedate = LastScrape(date=datetime.datetime.now())
         newscrapedate.save()
+
+        # Call MenuToday again, this time querying the sqlite db
         MenuToday()
 
     # Query eatit.db
@@ -64,6 +72,5 @@ def MenuToday():
         else:
             print("Something went terribly wrong...")
             print("")
-
 
 MenuToday()
