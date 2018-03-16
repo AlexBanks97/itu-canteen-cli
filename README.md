@@ -9,4 +9,21 @@ After Monday 08:00, the script will prompt for ITU credentials again, to scrape 
 
 ## Installation
 
-You need the following packages to run the script.
+You need the following packages to run the script: selenium, beautifulsoup, peewee. Run the following commands to install the libraries via pip.
+
+`$ pip install selenium`
+
+`$ pip install beautifulsoup4` 
+
+`$ pip install peewee`
+
+You will also need to install the chromedriver (and the browser Google Chrome, if you don't have it already).
+
+See [here](https://pypi.python.org/pypi/chromedriver_installer) for installation of the chromedriver.
+
+## Running the program
+After you have installed the required packages, you are ready to run your EatIT cli.
+
+`$ python eatit.py`
+
+The first time the program is run (and at the start of each week), it will take some time to scrape. After that, running the program will be super quick as it will query the sqlite database.
