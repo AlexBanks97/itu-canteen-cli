@@ -1,32 +1,12 @@
 # EatIT CLI - What's on the menu today?
 
-A python script that scrapes the canteen's menu off their intranet website.
+A python script that will tell you what is on the EatIT canteen's menu today.
 
-ITU login credentials are necessary in order to use this tool.
+The script will scrape the https://intranet.itu.dk/organisation/canteen, which it requires your ITU credentials to do.
+After it has scraped the data, it will save it to a sqlite local database, found at ~/.eatit.db in your system, in order to quickly query for today's menu for the rest of the week.
 
-## Setup:
-The script runs on Python 3.x and uses the following packages:
+After Monday 08:00, the script will prompt for ITU credentials again, to scrape for the new week's menu. The sqlite database is deleted and recreated so it won't store outdated data.
 
-Selenium and bs4
+## Installation
 
-They can be install through Pip as follows:
-
-`$ pip install selenium`
-
-`$ pip install bs4`
-
-You will also need to install the chromedriver (and the browser Google Chrome, if you don't have it already).
-
-See [here](https://pypi.python.org/pypi/chromedriver_installer) for installation of the chromedriver.
-
-## Usage:
-
-The script takes 1 optional argument `--headless`, which determines whether or not the script will run headless or not. 
-
-Normal:
-`$ python canteen-scraper.py`
-
-Headless: 
-`$ python canteen-scraper.py --headless`
-
-You will then be prompted to enter your username and password (ITU credentials).
+You need the following packages to run the script.

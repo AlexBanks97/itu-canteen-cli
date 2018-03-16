@@ -1,6 +1,6 @@
 ########## Imports ##########
-import Login as lg
 import os
+from . import Login as lg
 from bs4 import BeautifulSoup
 
 URL = "https://intranet.itu.dk/organisation/canteen"

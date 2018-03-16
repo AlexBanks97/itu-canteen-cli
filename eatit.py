@@ -2,7 +2,7 @@ import datetime
 from dateutil.relativedelta import relativedelta, MO
 import os
 import sqlite3
-from peewee import *
+from peewee import SqliteDatabase, IntegerField, CharField, DateTimeField, Model
 from pathlib import Path
 from os.path import expanduser
 
@@ -47,7 +47,7 @@ def MenuToday():
         DB.drop_tables([Day, LastScrape])
         DB.create_tables([Day, LastScrape])
 
-        import CScrape as cs
+        from util import CScrape as cs
         menus = cs.GetMenus()
         
         # Iterate menu items and insert into DB
