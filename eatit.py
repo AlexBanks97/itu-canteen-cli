@@ -33,11 +33,16 @@ DB.connect()
 DB.create_tables([Day, LastScrape])
 
 def MenuToday():
+    # Check if today is a weekend day.
+    today = datetime.date.today()
+    if today.weekday() > 4:
+        print("It is weekend, so EatIT is closed :(")
+        return
+
     # Query LastScrape for the last scrape
     last_scrape = LastScrape.select(LastScrape.date)
 
     # Get date at last monday at 8am
-    today = datetime.date.today()
     last_monday = today + relativedelta(weekday=MO(-1))
     last_monday = datetime.datetime(last_monday.year, last_monday.month, last_monday.day, 8)
 
