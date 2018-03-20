@@ -46,8 +46,11 @@ def MenuToday():
     last_monday = today + relativedelta(weekday=MO(-1))
     last_monday = datetime.datetime(last_monday.year, last_monday.month, last_monday.day, 8)
 
+    tdelt = datetime.datetime.now() - last_monday
+
     # If LastScrape table is empty, or if it has been 7 days since last monday. 
-    if len(last_scrape) < 1 or (datetime.datetime.now() - last_monday) > datetime.timedelta(days=7):
+    if len(last_scrape) < 1 or tdelt > datetime.timedelta(days=7):
+        print("It has been more than 7 days since last monday.")
         # new up the database again
         DB.drop_tables([Day, LastScrape])
         DB.create_tables([Day, LastScrape])
